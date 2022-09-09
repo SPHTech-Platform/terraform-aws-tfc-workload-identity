@@ -1,0 +1,11 @@
+name: terraform-ci
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+jobs:
+  ci:
+    uses: SPHTech-Platform/reusable-workflows/.github/workflows/terraform.yaml@main
+    with:
+      upload_sarif: false

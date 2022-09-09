@@ -1,0 +1,41 @@
+repos:
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: v0.1.17
+    hooks:
+      - id: terraform-fmt
+      - id: terraform-validate
+      - id: tflint
+        args:
+          - "--module"
+          - "--config=.tflint.hcl"
+      - id: markdown-link-check
+      - id: shellcheck
+
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.64.0
+    hooks:
+      - id: terraform_docs
+        args:
+          - "--args=--lockfile=false"
+      - id: terraform_tfsec
+        args:
+          - --args=--exclude-downloaded-modules
+      - id: checkov
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+    hooks:
+      # Git style
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-merge-conflict
+      - id: no-commit-to-branch
+
+      # Common errors
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+
+      # Security
+      - id: detect-aws-credentials
+        args: ['--allow-missing-credentials']
+      - id: detect-private-key
