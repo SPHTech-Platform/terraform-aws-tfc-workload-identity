@@ -17,5 +17,5 @@ locals {
 }
 
 data "tls_certificate" "tfc_certificate" {
-  url = "https://app.terraform.io"
+  url = local.oidc_provider_url
 }
