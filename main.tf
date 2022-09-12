@@ -31,7 +31,7 @@ module "tfc_workload_identity_role" {
 
   oidc_fully_qualified_subjects  = local.tfc_workload_identity_workspaces_exact
   oidc_subjects_with_wildcards   = local.tfc_workload_identity_workspaces_wildcard
-  oidc_fully_qualified_audiences = coalescelist(var.tfc_workload_identity_role_audiences, aws_iam_openid_connect_provider.tfc_provider[0].client_id_list)
+  oidc_fully_qualified_audiences = try(coalescelist(var.tfc_workload_identity_role_audiences, aws_iam_openid_connect_provider.tfc_provider[0].client_id_list), [])
 
   tags = var.tags
 }
