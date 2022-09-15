@@ -15,7 +15,7 @@ module "tfc_workload_identity_role" {
   # Role must not be created if no workspaces are listed. Otherwise, anyone on TFC with the right
   # audience can assume this role.
   create_role = var.create_tfc_workload_identity_role && (
-    length(local.tfc_workload_identity_workspaces_exact) + length(local.tfc_workload_identity_workspaces_wildcard) > 0
+    length(local.tfc_workload_identity_workspaces) > 0
   )
 
   role_name        = var.tfc_workload_identity_role
@@ -29,8 +29,7 @@ module "tfc_workload_identity_role" {
 
   provider_url = var.create_tfc_oidc_provider ? aws_iam_openid_connect_provider.tfc_provider[0].url : local.oidc_provider_url
 
-  oidc_fully_qualified_subjects  = local.tfc_workload_identity_workspaces_exact
-  oidc_subjects_with_wildcards   = local.tfc_workload_identity_workspaces_wildcard
+  oidc_subjects_with_wildcards   = local.tfc_workload_identity_workspaces
   oidc_fully_qualified_audiences = try(coalescelist(var.tfc_workload_identity_role_audiences, aws_iam_openid_connect_provider.tfc_provider[0].client_id_list), [])
 
   tags = var.tags
