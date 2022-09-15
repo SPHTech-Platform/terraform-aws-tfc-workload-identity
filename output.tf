@@ -10,8 +10,5 @@ output "tfc_workload_identity_audience" {
 
 output "tfc_workload_identity_workspaces" {
   description = "Workspaces allowed to assume the Workload Identity IAM Role"
-  value = concat(
-    local.tfc_workload_identity_workspaces_exact,
-    local.tfc_workload_identity_workspaces_wildcard,
-  )
+  value       = local.tfc_workload_identity_workspaces
 }

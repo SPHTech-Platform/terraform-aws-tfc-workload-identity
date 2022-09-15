@@ -1,15 +1,7 @@
 locals {
-  tfc_workload_identity_workspaces_exact = flatten([
+  tfc_workload_identity_workspaces = flatten([
     for org, workspaces in var.tfc_workload_identity_workspaces : [
-      for workspace in workspaces : [
-        "organization:${org}:workspace:${workspace}:run_phase:plan",
-        "organization:${org}:workspace:${workspace}:run_phase:apply",
-      ] if !can(regex("\\*+", workspace))
-    ]
-  ])
-  tfc_workload_identity_workspaces_wildcard = flatten([
-    for org, workspaces in var.tfc_workload_identity_workspaces : [
-      for workspace in workspaces : "organization:${org}:workspace:${workspace}:run_phase:*" if can(regex("\\*+", workspace))
+      for workspace in workspaces : "organization:${org}:workspace:${workspace}:run_phase:*"
     ]
   ])
 
