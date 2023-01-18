@@ -54,8 +54,12 @@ variable "tfc_workload_identity_role_permissions_boundary_arn" {
 
 variable "tfc_workload_identity_workspaces" {
   description = "Workspaces to allow access to the workload identity for this account"
-  type        = map(list(string)) # Key is the organization, values are the list of workspaces
-  default     = {}
+  type = map(      # Key is Organization
+    map(           # Key is Project
+      list(string) # List of workspaces
+    )
+  )
+  default = {}
 }
 
 variable "tfc_workload_identity_role_audiences" {

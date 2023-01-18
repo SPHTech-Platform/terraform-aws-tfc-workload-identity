@@ -42,7 +42,7 @@
 | <a name="input_tfc_workload_identity_role_max_session_duration"></a> [tfc\_workload\_identity\_role\_max\_session\_duration](#input\_tfc\_workload\_identity\_role\_max\_session\_duration) | Maximum CLI/API session duration in seconds between 3600 and 43200 | `number` | `3600` | no |
 | <a name="input_tfc_workload_identity_role_permissions_boundary_arn"></a> [tfc\_workload\_identity\_role\_permissions\_boundary\_arn](#input\_tfc\_workload\_identity\_role\_permissions\_boundary\_arn) | Permissions boundary ARN to use for IAM role for TFC | `string` | `""` | no |
 | <a name="input_tfc_workload_identity_role_policy_arns"></a> [tfc\_workload\_identity\_role\_policy\_arns](#input\_tfc\_workload\_identity\_role\_policy\_arns) | List of ARN to attach the IAM Role for TFC | `list(string)` | `[]` | no |
-| <a name="input_tfc_workload_identity_workspaces"></a> [tfc\_workload\_identity\_workspaces](#input\_tfc\_workload\_identity\_workspaces) | Workspaces to allow access to the workload identity for this account | `map(list(string))` | `{}` | no |
+| <a name="input_tfc_workload_identity_workspaces"></a> [tfc\_workload\_identity\_workspaces](#input\_tfc\_workload\_identity\_workspaces) | Workspaces to allow access to the workload identity for this account | <pre>map(      # Key is Organization<br>    map(           # Key is Project<br>      list(string) # List of workspaces<br>    )<br>  )</pre> | `{}` | no |
 
 ## Outputs
 
