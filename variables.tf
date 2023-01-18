@@ -63,3 +63,9 @@ variable "tfc_workload_identity_role_audiences" {
   type        = list(string)
   default     = []
 }
+
+variable "tfc_project_support_match" {
+  description = "The key to use for Terraform Cloud Project matching in the subject key. This is to work around the module not support projects. You should set this to 'Default Project' or '*'"
+  type        = string
+  default     = "*"
+}

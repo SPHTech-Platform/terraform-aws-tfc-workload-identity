@@ -1,7 +1,10 @@
 locals {
   tfc_workload_identity_workspaces = flatten([
     for org, workspaces in var.tfc_workload_identity_workspaces : [
-      for workspace in workspaces : "organization:${org}:workspace:${workspace}:run_phase:*"
+      for workspace in workspaces : [
+        "organization:${org}:workspace:${workspace}:run_phase:*",
+        "organization:${org}:workspace:project:${var.tfc_project_support_match}:${workspace}:run_phase:*",
+      ]
     ]
   ])
 
