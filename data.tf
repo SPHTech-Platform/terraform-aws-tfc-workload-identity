@@ -1,10 +1,7 @@
 locals {
   tfc_workload_identity_workspaces = distinct(flatten([
     for org, workspaces in var.tfc_workload_identity_workspaces : [
-      for workspace in workspaces : [
-        "organization:${org}:workspace:${workspace}:run_phase:*",
-        "organization:${org}:project:${var.tfc_project_support_match}:workspace:${workspace}:run_phase:*",
-      ]
+      for workspace in workspaces : "organization:${org}:project:${var.tfc_project_support_match}:workspace:${workspace}:run_phase:*"
     ]
   ]))
 
