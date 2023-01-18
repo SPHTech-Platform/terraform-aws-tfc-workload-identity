@@ -4,6 +4,14 @@ on:
   push:
     branches:
       - main
+
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  pull-requests: write
+  security-events: write
+
 jobs:
   ci:
     uses: SPHTech-Platform/reusable-workflows/.github/workflows/terraform.yaml@main
