@@ -36,14 +36,13 @@
 | <a name="input_create_tfc_workload_identity_role"></a> [create\_tfc\_workload\_identity\_role](#input\_create\_tfc\_workload\_identity\_role) | Create IAM Role for TFC Workload Identity | `bool` | `true` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | List of tags for resources | `map(string)` | `{}` | no |
 | <a name="input_tfc_oidc_provider_audiences"></a> [tfc\_oidc\_provider\_audiences](#input\_tfc\_oidc\_provider\_audiences) | List of TFC OIDC Provider audiences. This is part of the security configuration between TFC and your AWS account | `list(string)` | `[]` | no |
-| <a name="input_tfc_project_support_match"></a> [tfc\_project\_support\_match](#input\_tfc\_project\_support\_match) | The key to use for Terraform Cloud Project matching in the subject key. This is to work around the module not support projects. You should set this to 'Default Project' or '*' | `string` | `"*"` | no |
 | <a name="input_tfc_workload_identity_role"></a> [tfc\_workload\_identity\_role](#input\_tfc\_workload\_identity\_role) | Name of the IAM Role for TFC | `string` | `"TfcWorkloadIdentity"` | no |
 | <a name="input_tfc_workload_identity_role_audiences"></a> [tfc\_workload\_identity\_role\_audiences](#input\_tfc\_workload\_identity\_role\_audiences) | List of allowed audiences for the IAM Role. Defaults to the one for the OIDC provider if unspecified. | `list(string)` | `[]` | no |
 | <a name="input_tfc_workload_identity_role_description"></a> [tfc\_workload\_identity\_role\_description](#input\_tfc\_workload\_identity\_role\_description) | Description of the IAM Role for TFC | `string` | `"Terraform Cloud Workload Identity"` | no |
 | <a name="input_tfc_workload_identity_role_max_session_duration"></a> [tfc\_workload\_identity\_role\_max\_session\_duration](#input\_tfc\_workload\_identity\_role\_max\_session\_duration) | Maximum CLI/API session duration in seconds between 3600 and 43200 | `number` | `3600` | no |
 | <a name="input_tfc_workload_identity_role_permissions_boundary_arn"></a> [tfc\_workload\_identity\_role\_permissions\_boundary\_arn](#input\_tfc\_workload\_identity\_role\_permissions\_boundary\_arn) | Permissions boundary ARN to use for IAM role for TFC | `string` | `""` | no |
 | <a name="input_tfc_workload_identity_role_policy_arns"></a> [tfc\_workload\_identity\_role\_policy\_arns](#input\_tfc\_workload\_identity\_role\_policy\_arns) | List of ARN to attach the IAM Role for TFC | `list(string)` | `[]` | no |
-| <a name="input_tfc_workload_identity_workspaces"></a> [tfc\_workload\_identity\_workspaces](#input\_tfc\_workload\_identity\_workspaces) | Workspaces to allow access to the workload identity for this account | `map(list(string))` | `{}` | no |
+| <a name="input_tfc_workload_identity_workspaces"></a> [tfc\_workload\_identity\_workspaces](#input\_tfc\_workload\_identity\_workspaces) | Workspaces to allow access to the workload identity for this account | <pre>map(      # Key is Organization<br>    map(           # Key is Project<br>      list(string) # List of workspaces<br>    )<br>  )</pre> | `{}` | no |
 
 ## Outputs
 

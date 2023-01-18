@@ -54,18 +54,16 @@ variable "tfc_workload_identity_role_permissions_boundary_arn" {
 
 variable "tfc_workload_identity_workspaces" {
   description = "Workspaces to allow access to the workload identity for this account"
-  type        = map(list(string)) # Key is the organization, values are the list of workspaces
-  default     = {}
+  type = map(      # Key is Organization
+    map(           # Key is Project
+      list(string) # List of workspaces
+    )
+  )
+  default = {}
 }
 
 variable "tfc_workload_identity_role_audiences" {
   description = "List of allowed audiences for the IAM Role. Defaults to the one for the OIDC provider if unspecified."
   type        = list(string)
   default     = []
-}
-
-variable "tfc_project_support_match" {
-  description = "The key to use for Terraform Cloud Project matching in the subject key. This is to work around the module not support projects. You should set this to 'Default Project' or '*'"
-  type        = string
-  default     = "*"
 }
