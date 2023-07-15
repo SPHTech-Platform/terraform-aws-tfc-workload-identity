@@ -4,13 +4,13 @@ resource "aws_iam_openid_connect_provider" "tfc_provider" {
   url            = local.oidc_provider_url
   client_id_list = var.tfc_oidc_provider_audiences
   thumbprint_list = [
-    data.tls_certificate.tfc_certificate.certificates.0.sha1_fingerprint,
+    data.tls_certificate.tfc_certificate.certificates[0].sha1_fingerprint,
   ]
 }
 
 module "tfc_workload_identity_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
-  version = "~> 5.3.0"
+  version = "~> 5.27"
 
   # Role must not be created if no workspaces are listed. Otherwise, anyone on TFC with the right
   # audience can assume this role.
