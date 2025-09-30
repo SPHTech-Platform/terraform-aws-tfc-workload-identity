@@ -62,6 +62,16 @@ variable "tfc_workload_identity_workspaces" {
   default = {}
 }
 
+variable "tfc_workload_identity_stacks" {
+  description = "Stacks to allow access to the workload identity for this account"
+  type = map(      # Key is Organization
+    map(           # Key is Project
+      list(string) # List of stacks
+    )
+  )
+  default = {}
+}
+
 variable "tfc_workload_identity_role_audiences" {
   description = "List of allowed audiences for the IAM Role. Defaults to the one for the OIDC provider if unspecified."
   type        = list(string)

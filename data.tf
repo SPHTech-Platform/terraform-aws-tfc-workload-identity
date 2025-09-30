@@ -6,6 +6,14 @@ locals {
       ]
     ]
   ]))
+  tfc_workload_identity_stacks = distinct(flatten([
+    for org, projects in var.tfc_workload_identity_stacks : [
+      for project, stacks in projects : [
+        for stack in stacks : "organization:${org}:project:${project}:stacks:${stack}:*"
+      ]
+    ]
+  ]))
+  tfc_workload_identity_allowed_subs = distinct(concat(local.tfc_workload_identity_workspaces, local.tfc_workload_identity_stacks))
 
   oidc_provider_url = "https://app.terraform.io"
 }
