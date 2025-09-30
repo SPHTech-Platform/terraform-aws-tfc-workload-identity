@@ -9,7 +9,7 @@ locals {
   tfc_workload_identity_stacks = distinct(flatten([
     for org, projects in var.tfc_workload_identity_stacks : [
       for project, stacks in projects : [
-        for stack in stacks : "organization:${org}:project:${project}:stacks:${stack}:*"
+        for stack in stacks : "organization:${org}:project:${project}:stack:${stack}:*"
       ]
     ]
   ]))
